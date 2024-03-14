@@ -44,7 +44,5 @@ div, span, section, header, footer, p, a, nav {
 }
 @font-face {
   font-family: 'Old London';
-  src: url('OldLondon.ttf') format('truetype'),
-       url('Olondona.otf') format('opentype');
-  font-display: swap;
+  src: url('OldLondon.ttf') format('truetype');
 }
