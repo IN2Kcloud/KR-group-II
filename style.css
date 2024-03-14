@@ -61,7 +61,7 @@ body {
     display: flex;
     white-space: nowrap;
     overflow: hidden;
-    z-index: -1;
+    z-index: 1;
   }
   .main-copy-wrap {
     font-size: 6rem;
