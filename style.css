@@ -30,7 +30,7 @@ body {
     text-decoration: none;
   }
   .tm {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', 'sans-serif';
   }
   .header-right {
     margin-left: auto;
