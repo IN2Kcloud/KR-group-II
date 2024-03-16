@@ -1,34 +1,47 @@
 gsap.registerPlugin(ScrollTrigger);
+
 const canvas = document.getElementById("GK-intro");
 const context = canvas.getContext("2d");
-canvas.width = 1920;
-canvas.height = 1080;
 const frameCount = 115;
-const currentFrame = index => (
-  `./result3/male${(index + 1).toString().padStart(4, '0')}.webp`
-);
-const images = []
-const sinxsin = {
-  frame: 0
-};
+const images = [];
+
+// Preload images
 for (let i = 0; i < frameCount; i++) {
   const img = new Image();
-  img.src = currentFrame(i);
+  img.src = `./result3/male${(i + 1).toString().padStart(4, '0')}.webp`;
   images.push(img);
 }
-gsap.to(sinxsin, {
-  frame: frameCount - 1,
-  snap: "frame",
+
+const animation = gsap.to({}, {
+  duration: frameCount - 1,
   scrollTrigger: {
-    scrub: 1
-  },
-  onUpdate: render
+    trigger: canvas,
+    start: "top top",
+    end: "+=" + (canvas.offsetHeight * 1.3),
+    scrub: 1,
+    onUpdate: render
+  }
 });
-images[0].onload = render;
+
 function render() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.drawImage(images[sinxsin.frame], 0, 0);
+  context.drawImage(images[Math.round(animation.progress() * (frameCount - 1))], 0, 0);
 }
+
+// Additional ScrollTrigger animations
+const sections = document.querySelectorAll(".section");
+sections.forEach(section => {
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      pin: true,
+      start: "top top",
+      end: `+=${window.innerHeight * 1.3}`,
+      scrub: 1
+    }
+  });
+});
+
 gsap.timeline({
   scrollTrigger: {
     trigger: ".section-2",
