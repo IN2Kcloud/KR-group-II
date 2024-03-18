@@ -72,12 +72,9 @@ gsap.timeline({
 .to('header', { color: '#fff' })
 .to('.button-round', { color: '#171010', backgroundColor: '#fff', border: '1px solid #fff' });
 
-// Remove loading class after resources have loaded
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   document.body.classList.remove('before-load');
 });
-
-// Remove loading element after transition
 document.querySelector('.loading').addEventListener('transitionend', (e) => {
   document.body.removeChild(e.currentTarget);
 });
